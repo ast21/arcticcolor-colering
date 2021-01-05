@@ -1,5 +1,7 @@
 #root {
   position: relative;
+  font-family: Roboto;
+  font-size: 12px;
 }
 
 #sidebar {
@@ -37,7 +39,7 @@
   width: 88px;
   height: 72px;
   background-color: #272C32;
-  color: white;
+  color: #8C8C8C;
   text-align: center;
   cursor: pointer;
 
@@ -48,17 +50,31 @@
 }
 
 .sidebar-tab:hover {
-  background-color: #333a41;
+  background-color: #363d45;
 }
 
 .sidebar-tab.active {
   background-color: #3f4553;
+  color: #fff;
   cursor: default;
+}
+
+.sidebar-tab.active > .sidebar-tab-icon {
+  filter: unset;
 }
 
 .sidebar-tab-icon {
   width: 27px;
   height: 27px;
+  filter: brightness(0.55); /* background-color: #8C8C8C; */
+}
+
+.sidebar-tab-name {
+  margin-top: 5px;
+}
+
+.sidebar-tab-content {
+  display: none;
 }
 
 #container {
@@ -74,6 +90,7 @@
 .sidebar-hide {
   transform: translateX(-527px);
 }
+
 .transition {
   transition-duration: 0.5s;
 }

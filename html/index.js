@@ -1,26 +1,44 @@
-let toggle = document.querySelector('#sidebar-toggle')
-let sidebar = document.querySelector('#sidebar')
-let container = document.querySelector('#container')
-let sidebarTabs = document.querySelectorAll(".sidebar-tab");
+document.addEventListener('DOMContentLoaded', () => {
+  let container = document.querySelector('#container')
+  let sidebar = document.querySelector('#sidebar')
+  let sidebarToggle = document.querySelector('#sidebar-toggle')
+  let sidebarTabs = document.querySelectorAll(".sidebar-tab")
+  let sidebarTabIcons = document.querySelectorAll(".sidebar-tab-icon")
+  let sidebarTabContents = document.querySelectorAll(".sidebar-tab-content")
 
-toggle.addEventListener('click', function () {
-  if (sidebar.classList.contains('sidebar-hide')) {
-    sidebar.classList.remove('sidebar-hide');
-    toggle.classList.remove('sidebar-hide');
-  } else {
-    sidebar.classList.add('sidebar-hide', 'transition');
-    toggle.classList.add('sidebar-hide', 'transition');
+  displayActiveSidebarContent()
+
+  function displayActiveSidebarContent() {
+    let sidebarActiveTab = document.querySelector(".sidebar-tab.active")
+    let sidebarActiveTabContent = document.querySelector(`#${sidebarActiveTab.dataset.content}`)
+    sidebarActiveTabContent.style.display = 'block'
   }
-  console.log(sidebar)
-})
 
-
-sidebarTabs.forEach(function (elem) {
-  elem.addEventListener("click", function () {
-    let sidebarActiveTab = document.querySelector(".sidebar-tab.active");
-    if (this !== sidebarActiveTab) {
-      this.classList.add('active');
-      sidebarActiveTab.classList.remove('active');
+  sidebarToggle.addEventListener('click', function () {
+    if (sidebar.classList.contains('sidebar-hide')) {
+      sidebar.classList.remove('sidebar-hide')
+      sidebarToggle.classList.remove('sidebar-hide')
+    } else {
+      sidebar.classList.add('sidebar-hide', 'transition')
+      sidebarToggle.classList.add('sidebar-hide', 'transition')
     }
   })
+
+  sidebarTabs.forEach(function (elem) {
+    elem.addEventListener("click", function () {
+      let sidebarThisTab = this
+      let sidebarThisTabContent = document.querySelector(`#${sidebarThisTab.dataset.content}`)
+      let sidebarActiveTab = document.querySelector(".sidebar-tab.active")
+      let sidebarActiveTabContent = document.querySelector(`#${sidebarActiveTab.dataset.content}`)
+      if (sidebarThisTab !== sidebarActiveTab) {
+        // active => disable
+        sidebarActiveTab.classList.remove('active')
+        sidebarActiveTabContent.style.display = 'none'
+        // this => active
+        sidebarThisTab.classList.add('active')
+        sidebarThisTabContent.style.display = 'block'
+      }
+    })
+  })
 })
+
