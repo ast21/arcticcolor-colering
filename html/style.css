@@ -1,0 +1,58 @@
+#root {
+  position: relative;
+}
+
+#sidebar {
+  background-color: #3F4553;
+  position: absolute;
+  width: 527px;
+  height: 100vh;
+  z-index: 1;
+}
+
+#sidebar-toggle {
+  position: absolute;
+  width: 20px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  margin-left: 527px;
+  margin-top: 90vh;
+  z-index: 1;
+}
+
+#sidebar-toggle:hover {
+  background-color: #404040;
+  color: white;
+  cursor: pointer;
+}
+
+.sidebar-tabs {
+  background-color: #272C32;
+}
+
+.sidebar-tab {
+  width: 72px;
+  height: 72px;
+  background-color: #3F4553;
+  color: white;
+  display: inline-block;
+  text-align: center;
+}
+
+#container {
+  background-color: bisque;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  z-index: 0;
+}
+
+
+/* animation */
+.sidebar-hide {
+  transform: translateX(-527px);
+}
+.transition {
+  transition-duration: 0.5s;
+}
