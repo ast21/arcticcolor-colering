@@ -1,6 +1,7 @@
 let toggle = document.querySelector('#sidebar-toggle')
 let sidebar = document.querySelector('#sidebar')
 let container = document.querySelector('#container')
+let sidebarTabs = document.querySelectorAll(".sidebar-tab");
 
 toggle.addEventListener('click', function () {
   if (sidebar.classList.contains('sidebar-hide')) {
@@ -11,4 +12,15 @@ toggle.addEventListener('click', function () {
     toggle.classList.add('sidebar-hide', 'transition');
   }
   console.log(sidebar)
+})
+
+
+sidebarTabs.forEach(function (elem) {
+  elem.addEventListener("click", function () {
+    let sidebarActiveTab = document.querySelector(".sidebar-tab.active");
+    if (this !== sidebarActiveTab) {
+      this.classList.add('active');
+      sidebarActiveTab.classList.remove('active');
+    }
+  })
 })

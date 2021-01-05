@@ -29,15 +29,36 @@
 
 .sidebar-tabs {
   background-color: #272C32;
+  display: flex;
+  justify-content: start;
 }
 
 .sidebar-tab {
-  width: 72px;
+  width: 88px;
   height: 72px;
-  background-color: #3F4553;
+  background-color: #272C32;
   color: white;
-  display: inline-block;
   text-align: center;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-tab:hover {
+  background-color: #333a41;
+}
+
+.sidebar-tab.active {
+  background-color: #3f4553;
+  cursor: default;
+}
+
+.sidebar-tab-icon {
+  width: 27px;
+  height: 27px;
 }
 
 #container {
