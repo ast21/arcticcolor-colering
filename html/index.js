@@ -5,8 +5,50 @@ document.addEventListener('DOMContentLoaded', () => {
   let sidebarTabs = document.querySelectorAll(".sidebar-tab")
   let sidebarTabIcons = document.querySelectorAll(".sidebar-tab-icon")
   let sidebarTabContents = document.querySelectorAll(".sidebar-tab-content")
+  let colerList = document.querySelector(".coler-list")
 
   displayActiveSidebarContent()
+  generateColers()
+
+  function generateColers() {
+    window.colers.forEach(coler => {
+      // colergroup
+      let groupIdent = null
+      let colergroup = document.querySelector(`#coler-group-${coler.group}`)
+      if (colergroup === null) {
+        colergroup = document.createElement('div')
+        colergroup.id = `coler-group-${coler.group}`
+        colergroup.classList.add('coler-group')
+        colerList.appendChild(colergroup)
+
+        // groupIdent
+        groupIdent = document.createElement('div')
+        groupIdent.classList.add('group-ident')
+        groupIdent.innerText = coler.group
+      }
+      // colerElement
+      let colerElement = document.createElement('div')
+      colerElement.id = `coler-element-${coler.id}`
+      colerElement.classList.add('coler-element')
+      colergroup.appendChild(colerElement)
+
+      colerElement.style.background = coler.color
+      colerElement.setAttribute('title', coler.id)
+      colerElement.addEventListener('click', () => {
+        console.log(coler.id, coler.color, coler.price)
+      })
+
+      // groupIdent
+      if (groupIdent !== null) colerElement.appendChild(groupIdent)
+
+      // colerIdent
+      let colerIdent = document.createElement('div')
+      colerIdent.classList.add('coler-ident')
+      colerElement.appendChild(colerIdent)
+
+      colerIdent.innerText = coler.id
+    })
+  }
 
   function displayActiveSidebarContent() {
     let sidebarActiveTab = document.querySelector(".sidebar-tab.active")
