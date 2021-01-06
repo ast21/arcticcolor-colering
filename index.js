@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let containerHeader = document.querySelector('.content-header')
   let sidebar = document.querySelector('#sidebar')
   let sidebarToggle = document.querySelector('#sidebar-toggle')
-  let sidebarTabs = document.querySelectorAll(".sidebar-tab")
+  let sidebarHeader = document.querySelectorAll(".sidebar-header")
   let colerList = document.querySelector(".coler-list")
 
   console.log(content)
-  displayActiveSidebarContent()
+  // displayActiveSidebarContent()
   generateColers()
 
   function generateColers() {
@@ -60,12 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  function displayActiveSidebarContent() {
-    let sidebarActiveTab = document.querySelector(".sidebar-tab.active")
-    let sidebarActiveTabContent = document.querySelector(`#${sidebarActiveTab.dataset.content}`)
-    sidebarActiveTabContent.style.display = 'block'
-  }
-
   sidebarToggle.addEventListener('click', function () {
     if (sidebar.classList.contains('sidebar-hide')) {
       sidebar.classList.remove('sidebar-hide')
@@ -78,21 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  sidebarTabs.forEach(function (elem) {
-    elem.addEventListener("click", function () {
-      let sidebarThisTab = this
-      let sidebarThisTabContent = document.querySelector(`#${sidebarThisTab.dataset.content}`)
-      let sidebarActiveTab = document.querySelector(".sidebar-tab.active")
-      let sidebarActiveTabContent = document.querySelector(`#${sidebarActiveTab.dataset.content}`)
-      if (sidebarThisTab !== sidebarActiveTab) {
-        // active => disable
-        sidebarActiveTab.classList.remove('active')
-        sidebarActiveTabContent.style.display = 'none'
-        // this => active
-        sidebarThisTab.classList.add('active')
-        sidebarThisTabContent.style.display = 'block'
-      }
-    })
-  })
+  // sidebarTabs.forEach(function (elem) {
+  //   elem.addEventListener("click", function () {
+  //     let sidebarThisTab = this
+  //     let sidebarThisTabContent = document.querySelector(`#${sidebarThisTab.dataset.content}`)
+  //     let sidebarActiveTab = document.querySelector(".sidebar-tab.active")
+  //     let sidebarActiveTabContent = document.querySelector(`#${sidebarActiveTab.dataset.content}`)
+  //     if (sidebarThisTab !== sidebarActiveTab) {
+  //       // active => disable
+  //       sidebarActiveTab.classList.remove('active')
+  //       sidebarActiveTabContent.style.display = 'none'
+  //       // this => active
+  //       sidebarThisTab.classList.add('active')
+  //       sidebarThisTabContent.style.display = 'block'
+  //     }
+  //   })
+  // })
 })
 

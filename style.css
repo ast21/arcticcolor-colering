@@ -29,19 +29,20 @@
   cursor: pointer;
 }
 
-.sidebar-tabs {
+.sidebar-header {
   background-color: #272C32;
   display: flex;
   justify-content: start;
+  align-items: center;
 }
 
-.sidebar-tab {
+.sidebar-header-palette {
   width: 88px;
   height: 72px;
-  background-color: #272C32;
-  color: #8C8C8C;
   text-align: center;
-  cursor: pointer;
+  background-color: #3f4553;
+  color: #fff;
+  cursor: default;
 
   display: flex;
   flex-direction: column;
@@ -49,33 +50,48 @@
   align-items: center;
 }
 
-.sidebar-tab:hover {
-  background-color: #363d45;
-}
 
-.sidebar-tab.active {
-  background-color: #3f4553;
-  color: #fff;
-  cursor: default;
-}
-
-.sidebar-tab.active > .sidebar-tab-icon {
-  filter: unset;
-}
-
-.sidebar-tab-icon {
+.sidebar-header-palette-icon {
   width: 27px;
   height: 27px;
-  filter: brightness(0.55); /* background-color: #8C8C8C; */
 }
 
-.sidebar-tab-name {
+.sidebar-header-palette-name {
   margin-top: 5px;
 }
 
-.sidebar-tab-content {
-  display: none;
+.sidebar-header-search {
+  margin-left: 20px;
+  width: 300px;
+  height: min-content;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #525B6F;
+  padding-bottom: 2px;
 }
+
+.sidebar-header-search-icon {
+  width: 20px;
+  height: 20px;
+  /*filter: brightness(0.55);*/
+  margin-right: 10px;
+}
+
+.sidebar-header-search-input {
+  width: 100%;
+  font-size: 12px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  caret-color: white;
+  color: white;
+}
+
+.sidebar-header-search-input::-webkit-input-placeholder {
+  color: #525B6F;
+}
+
 
 .coler-list {
   height: calc(100vh - 72px - 10px);
@@ -171,7 +187,7 @@
 
 .image-template {
   position: absolute;
-  background-image: url(img/interior-template.png);
+  background-image: url(img/room.png);
   background-size: cover;
   background-position: center;
   width: 100%;

@@ -10,26 +10,20 @@
 <body>
 
 <div id="root">
-
-  <!-- sidebar -->
+  <!-- new sidebar -->
   <div id="sidebar">
-    <div class="sidebar-tabs">
-      <div class="sidebar-tab active" data-content="palette">
-        <img class="sidebar-tab-icon" src="./img/palette.svg" alt="Палитра">
-        <div class="sidebar-tab-name">Палитра</div>
+    <div class="sidebar-header">
+      <div class="sidebar-header-palette">
+        <img class="sidebar-header-palette-icon" src="./img/palette.svg" alt="Палитра">
+        <div class="sidebar-header-palette-name">Палитра</div>
       </div>
-      <div class="sidebar-tab" data-content="search">
-        <img class="sidebar-tab-icon" src="./img/search.svg" alt="Поиск">
-        <div class="sidebar-tab-name">Поиск</div>
+      <div class="sidebar-header-search">
+        <img class="sidebar-header-search-icon" src="./img/search.svg" alt="Поиск">
+        <input class="sidebar-header-search-input" placeholder="Поиск по цвету или номеру">
       </div>
     </div>
-    <div class="sidebar-tab-contents">
-      <div class="sidebar-tab-content" id="palette">
-        <div class="coler-list"></div>
-      </div>
-      <div class="sidebar-tab-content" id="search">
-        // а это поиск
-      </div>
+    <div class="sidebar-palette-content">
+      <div class="coler-list"></div>
     </div>
   </div>
   <div id="sidebar-toggle"></div>
