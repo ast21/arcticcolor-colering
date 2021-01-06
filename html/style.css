@@ -106,6 +106,7 @@
   /*justify-content: space-between;*/
   /*align-items: flex-end;*/
 }
+
 .coler-element:first-child {
   margin-left: 0;
 }
@@ -142,4 +143,27 @@
 
 .transition {
   transition-duration: 0.5s;
+}
+
+/* scrollbar */
+.coler-list {
+  scrollbar-width: thin;
+  scrollbar-color: #A8B2CC #3F4553;
+}
+
+.coler-list::-webkit-scrollbar {
+  height: 120px;
+  width: 8px;
+}
+
+.coler-list::-webkit-scrollbar-track {
+  background: #3F4553;
+}
+
+.coler-list::-webkit-scrollbar-thumb {
+  border-left: 3px solid #A8B2CC;
+}
+
+.coler-list::-webkit-scrollbar-thumb:hover {
+  border-left: 3px solid #8991a5;
 }
