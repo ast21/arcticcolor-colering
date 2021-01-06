@@ -111,7 +111,7 @@
 .favourite-list {
   position: absolute;
   width: 100%;
-  height: calc(200px);
+  height: auto;
   overflow: auto;
   color: #fff;
   font-size: 12px;
@@ -130,7 +130,21 @@
 }
 
 .favourite-elements {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
 
+.favourite-content {
+  height: 0;
+  display: none;
+}
+
+.favourite-content.show {
+  height: auto;
+  display: block;
 }
 
 .color-selected {
@@ -161,6 +175,18 @@
   cursor: pointer;
   position: relative;
   transition: transform 0.1s linear;
+}
+
+.coler-element.selected {
+  transform: scale(0.93);
+}
+
+.coler-element.selected > .coler-tick {
+  display: block;
+}
+
+.coler-element.selected:hover > .coler-tick {
+  opacity: unset;
 }
 
 .coler-element:first-child {

@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let toggleIcon = document.querySelector('.sidebar-header-toggle-icon')
   let colerList = document.querySelector(".coler-list")
   let favouriteElements = document.querySelector(".favourite-elements")
+  let favouriteContent = document.querySelector(".favourite-content")
+  let favouriteToggle = document.querySelector(".favourite-header")
 
-  console.log(content)
   generateColers()
 
   function generateColers() {
@@ -32,17 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
       colerElement.style.background = coler.color
       colerElement.setAttribute('title', coler.id)
       colerElement.addEventListener('click', function () {
-        let colorFirst = document.querySelector('#background-first')
-        let colorSecond = document.querySelector('#background-second')
-        let colorFirstIdElement = document.querySelector('#coler-first-id')
-        let colorSecondIdElement = document.querySelector('#coler-second-id')
-
-        // change color
-        colorSecond.style.backgroundColor = colorFirst.style.backgroundColor
-        colorSecondIdElement.textContent = colorFirstIdElement.textContent
-        colorFirst.style.backgroundColor = this.style.backgroundColor
-        colorFirstIdElement.textContent = coler.id
-        // colorFirst.classList.add('color-change')
+        changeColor(coler.id, coler.color)
+        selectColer(this, coler)
       })
       colergroup.appendChild(colerElement)
 
@@ -74,5 +66,83 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleIcon.classList.add('mirror-x')
     }
   })
+
+  favouriteToggle.addEventListener('click', function () {
+    if (favouriteContent.classList.contains('show')) {
+      favouriteContent.classList.remove('show')
+    } else {
+      favouriteContent.classList.add('show', 'transition')
+    }
+  })
+
+  function selectColer(element, coler) {
+    if (element.classList.contains('selected')) {
+      element.classList.remove('selected')
+      let colers = removeElementFromLocalStorage(coler)
+      removeFavourites(coler)
+    } else {
+      element.classList.add('selected')
+      let colers = addElementToLocalStorage(coler)
+      addFavourites(coler)
+    }
+  }
+
+  function updateFavourites(colers) {
+    colers.forEach(coler => {
+      addFavourites(coler)
+    })
+  }
+
+  function addFavourites(coler) {
+    // favouriteElement
+    let favouriteElement = document.createElement('div')
+    favouriteElement.dataset.id = coler.id
+    favouriteElement.classList.add('coler-element')
+    favouriteElement.style.background = coler.color
+    favouriteElement.setAttribute('title', coler.id)
+    favouriteElement.addEventListener('click', function () {
+      changeColor(coler.id, coler.color)
+      selectColer(this, coler)
+    })
+    // favouriteIdent
+    let favouriteIdent = document.createElement('div')
+    favouriteIdent.classList.add('coler-ident')
+    favouriteIdent.innerText = coler.id
+    favouriteElement.appendChild(favouriteIdent)
+
+    favouriteElements.appendChild(favouriteElement)
+  }
+
+  function removeFavourites(element, coler) {
+    console.log(colers)
+  }
+
+  function addElementToLocalStorage(coler) {
+    let colers = JSON.parse(localStorage.getItem('colers'))
+    if (colers) {
+      colers.push(coler)
+      localStorage.setItem('colers', JSON.stringify(colers))
+      return colers
+    }
+    localStorage.setItem('colers', JSON.stringify([coler]))
+    return [coler]
+  }
+
+  function removeElementFromLocalStorage(coler) {
+    let colers = JSON.parse(localStorage.getItem('colers'))
+    if (colers) {
+      colers.shift(coler)
+      localStorage.setItem('colers', JSON.stringify(colers))
+      return colers
+    }
+    return []
+  }
+
+  function changeColor(colerId, color, element = 'first') {
+    let backgroundElement = document.querySelector(`#background-${element}`)
+    let colerIdElement = document.querySelector(`#coler-${element}-id`)
+    backgroundElement.style.backgroundColor = color
+    colerIdElement.textContent = colerId
+  }
 })
 
