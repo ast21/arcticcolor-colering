@@ -92,6 +92,26 @@
   color: #525B6F;
 }
 
+.sidebar-header-toggle {
+  width: 119px;
+  height: 72px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.sidebar-header-toggle:hover {
+  background: linear-gradient(to right, #272C32 50%, #39424a);
+  transition: 0.5s;
+}
+
+.sidebar-header-toggle-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
 
 .coler-list {
   height: calc(100vh - 72px - 10px);

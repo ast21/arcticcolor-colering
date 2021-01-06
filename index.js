@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let containerHeader = document.querySelector('.content-header')
   let sidebar = document.querySelector('#sidebar')
   let sidebarToggle = document.querySelector('#sidebar-toggle')
+  let sidebarToggle2 = document.querySelector('.sidebar-header-toggle')
   let sidebarHeader = document.querySelectorAll(".sidebar-header")
   let colerList = document.querySelector(".coler-list")
 
@@ -61,6 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   sidebarToggle.addEventListener('click', function () {
+    if (sidebar.classList.contains('sidebar-hide')) {
+      sidebar.classList.remove('sidebar-hide')
+      content.classList.remove('content-full')
+      sidebarToggle.classList.remove('sidebar-hide')
+    } else {
+      sidebar.classList.add('sidebar-hide', 'transition')
+      content.classList.add('content-full', 'transition')
+      sidebarToggle.classList.add('sidebar-hide', 'transition')
+    }
+  })
+
+  sidebarToggle2.addEventListener('click', function () {
     if (sidebar.classList.contains('sidebar-hide')) {
       sidebar.classList.remove('sidebar-hide')
       content.classList.remove('content-full')
