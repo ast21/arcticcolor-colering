@@ -78,20 +78,17 @@
 }
 
 .coler-list {
-  height: calc(100vh - 72px);
+  height: calc(100vh - 72px - 10px);
   overflow: auto;
   color: #3F4553;
+  margin-top: 10px;
 }
 
 .coler-group {
   display: flex;
   justify-content: start;
-  margin-top: 10px;
-  margin-left: 20px;
-}
-
-.coler-group:last-child {
   margin-bottom: 10px;
+  margin-left: 20px;
 }
 
 .coler-element {
