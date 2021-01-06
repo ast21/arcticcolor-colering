@@ -30,13 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
       let colerElement = document.createElement('div')
       colerElement.id = `coler-element-${coler.id}`
       colerElement.classList.add('coler-element')
-      colergroup.appendChild(colerElement)
-
       colerElement.style.background = coler.color
       colerElement.setAttribute('title', coler.id)
-      colerElement.addEventListener('click', () => {
-        console.log(coler.id, coler.color, coler.price)
+      colerElement.addEventListener('click', function () {
+        let colorFirst = document.querySelector('#background-first')
+        let colorSecond = document.querySelector('#background-second')
+
+        // change color
+        colorSecond.style.backgroundColor = colorFirst.style.backgroundColor
+        colorFirst.style.backgroundColor = this.style.backgroundColor
+        // colorFirst.classList.add('color-change')
       })
+      colergroup.appendChild(colerElement)
 
       // groupIdent
       if (groupIdent !== null) colerElement.appendChild(groupIdent)
@@ -44,9 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // colerIdent
       let colerIdent = document.createElement('div')
       colerIdent.classList.add('coler-ident')
+      colerIdent.innerText = coler.id
       colerElement.appendChild(colerIdent)
 
-      colerIdent.innerText = coler.id
+      // colerTick
+      let colerTick = document.createElement('img')
+      colerTick.classList.add('coler-tick')
+      colerTick.src = './img/tick.svg'
+      colerElement.appendChild(colerTick)
     })
   }
 

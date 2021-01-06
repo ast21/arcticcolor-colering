@@ -127,6 +127,17 @@
   margin-right: 7px;
 }
 
+.coler-tick {
+  display: none;
+  margin-top: calc(50% - 11px);
+  margin-left: calc(50% - 11px);
+}
+
+.coler-element:hover > .coler-tick {
+  display: block;
+  opacity: 0.4;
+}
+
 .content {
   background-color: bisque;
   position: absolute;
@@ -150,24 +161,19 @@
 }
 
 .background-color {
-  /* commented */
-}
-
-.background-first {
   width: 50%;
   height: 100%;
-  background-color: gold;
+  background-color: bisque;
 }
 
-.background-second {
-  width: 50%;
-  height: 100%;
-  background-color: chartreuse;
+.color-change {
+  /*transform: translateX(100%);*/
+  transition-duration: 0.5s;
 }
 
 .image-template {
   position: absolute;
-  background-image: url(./img/interior-template.png);
+  background-image: url(img/interior-template.png);
   background-size: cover;
   background-position: center;
   width: 100%;
