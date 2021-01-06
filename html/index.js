@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-  let container = document.querySelector('#container')
+  let content = document.querySelector('.content')
+  let containerHeader = document.querySelector('.content-header')
   let sidebar = document.querySelector('#sidebar')
   let sidebarToggle = document.querySelector('#sidebar-toggle')
   let sidebarTabs = document.querySelectorAll(".sidebar-tab")
-  let sidebarTabIcons = document.querySelectorAll(".sidebar-tab-icon")
-  let sidebarTabContents = document.querySelectorAll(".sidebar-tab-content")
   let colerList = document.querySelector(".coler-list")
 
+  console.log(content)
   displayActiveSidebarContent()
   generateColers()
 
@@ -59,9 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
   sidebarToggle.addEventListener('click', function () {
     if (sidebar.classList.contains('sidebar-hide')) {
       sidebar.classList.remove('sidebar-hide')
+      content.classList.remove('content-full')
       sidebarToggle.classList.remove('sidebar-hide')
     } else {
       sidebar.classList.add('sidebar-hide', 'transition')
+      content.classList.add('content-full', 'transition')
       sidebarToggle.classList.add('sidebar-hide', 'transition')
     }
   })

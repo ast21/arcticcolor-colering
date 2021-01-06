@@ -127,18 +127,41 @@
   margin-right: 7px;
 }
 
-#container {
+.content {
   background-color: bisque;
   position: absolute;
   height: 100vh;
-  width: 100%;
+  width: calc(100% - 527px);
+  margin-left: 527px;
   z-index: 0;
+}
+
+.header {
+  height: 72px;
+  color: #60636A;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.header-icon {
+  width: 45px;
+  text-align: center;
+}
+
+.header-text {
+  line-height: 14px;
 }
 
 
 /* animation */
 .sidebar-hide {
   transform: translateX(-527px);
+}
+.content-full {
+  width: 100%;
+  margin-left: 0;
 }
 
 .transition {
