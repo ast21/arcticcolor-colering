@@ -1,14 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   let content = document.querySelector('.content')
-  let containerHeader = document.querySelector('.content-header')
   let sidebar = document.querySelector('#sidebar')
-  let sidebarToggle2 = document.querySelector('.sidebar-header-toggle')
+  let sidebarToggle = document.querySelector('.sidebar-header-toggle')
   let toggleIcon = document.querySelector('.sidebar-header-toggle-icon')
-  let sidebarHeader = document.querySelectorAll(".sidebar-header")
   let colerList = document.querySelector(".coler-list")
 
   console.log(content)
-  // displayActiveSidebarContent()
   generateColers()
 
   function generateColers() {
@@ -61,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  sidebarToggle2.addEventListener('click', function () {
+  sidebarToggle.addEventListener('click', function () {
     if (sidebar.classList.contains('sidebar-hide')) {
       sidebar.classList.remove('sidebar-hide')
       content.classList.remove('content-full')
@@ -72,22 +69,5 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleIcon.classList.add('mirror-x')
     }
   })
-
-  // sidebarTabs.forEach(function (elem) {
-  //   elem.addEventListener("click", function () {
-  //     let sidebarThisTab = this
-  //     let sidebarThisTabContent = document.querySelector(`#${sidebarThisTab.dataset.content}`)
-  //     let sidebarActiveTab = document.querySelector(".sidebar-tab.active")
-  //     let sidebarActiveTabContent = document.querySelector(`#${sidebarActiveTab.dataset.content}`)
-  //     if (sidebarThisTab !== sidebarActiveTab) {
-  //       // active => disable
-  //       sidebarActiveTab.classList.remove('active')
-  //       sidebarActiveTabContent.style.display = 'none'
-  //       // this => active
-  //       sidebarThisTab.classList.add('active')
-  //       sidebarThisTabContent.style.display = 'block'
-  //     }
-  //   })
-  // })
 })
 
