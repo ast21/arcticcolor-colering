@@ -97,15 +97,20 @@
   margin-left: 5px;
   cursor: pointer;
   position: relative;
-
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*justify-content: space-between;*/
-  /*align-items: flex-end;*/
+  transition: transform 0.1s linear;
 }
 
 .coler-element:first-child {
   margin-left: 0;
+}
+
+.coler-element:hover {
+  transform: scale(0.93);
+}
+
+.coler-element:hover > .coler-tick {
+  display: block;
+  opacity: 0.4;
 }
 
 .group-ident {
@@ -130,10 +135,6 @@
   margin-left: calc(50% - 11px);
 }
 
-.coler-element:hover > .coler-tick {
-  display: block;
-  opacity: 0.4;
-}
 
 .content {
   background-color: bisque;
