@@ -12,23 +12,6 @@
   z-index: 1;
 }
 
-#sidebar-toggle {
-  position: absolute;
-  width: 20px;
-  height: 40px;
-  background-color: black;
-  color: white;
-  margin-left: 527px;
-  margin-top: 90vh;
-  z-index: 1;
-}
-
-#sidebar-toggle:hover {
-  background-color: #404040;
-  color: white;
-  cursor: pointer;
-}
-
 .sidebar-header {
   background-color: #272C32;
   display: flex;
@@ -110,6 +93,10 @@
   width: 20px;
   height: 20px;
   margin-right: 5px;
+}
+
+.mirror-x {
+  transform: scale(-1, 1);
 }
 
 
@@ -238,11 +225,11 @@
 
 /* animation */
 .sidebar-hide {
-  transform: translateX(-527px);
+  transform: translateX(-497px);
 }
 .content-full {
-  width: 100%;
-  margin-left: 0;
+  width: calc(100% - 30px);
+  margin-left: 30px;
 }
 
 .transition {

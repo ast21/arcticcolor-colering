@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let content = document.querySelector('.content')
   let containerHeader = document.querySelector('.content-header')
   let sidebar = document.querySelector('#sidebar')
-  let sidebarToggle = document.querySelector('#sidebar-toggle')
   let sidebarToggle2 = document.querySelector('.sidebar-header-toggle')
+  let toggleIcon = document.querySelector('.sidebar-header-toggle-icon')
   let sidebarHeader = document.querySelectorAll(".sidebar-header")
   let colerList = document.querySelector(".coler-list")
 
@@ -61,27 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  sidebarToggle.addEventListener('click', function () {
-    if (sidebar.classList.contains('sidebar-hide')) {
-      sidebar.classList.remove('sidebar-hide')
-      content.classList.remove('content-full')
-      sidebarToggle.classList.remove('sidebar-hide')
-    } else {
-      sidebar.classList.add('sidebar-hide', 'transition')
-      content.classList.add('content-full', 'transition')
-      sidebarToggle.classList.add('sidebar-hide', 'transition')
-    }
-  })
-
   sidebarToggle2.addEventListener('click', function () {
     if (sidebar.classList.contains('sidebar-hide')) {
       sidebar.classList.remove('sidebar-hide')
       content.classList.remove('content-full')
-      sidebarToggle.classList.remove('sidebar-hide')
+      toggleIcon.classList.remove('mirror-x')
     } else {
       sidebar.classList.add('sidebar-hide', 'transition')
       content.classList.add('content-full', 'transition')
-      sidebarToggle.classList.add('sidebar-hide', 'transition')
+      toggleIcon.classList.add('mirror-x')
     }
   })
 
