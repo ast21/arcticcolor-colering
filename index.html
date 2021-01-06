@@ -25,8 +25,14 @@
         <img class="sidebar-header-toggle-icon" src="./img/toggle.svg" alt="Скрыть">
       </div>
     </div>
-    <div class="sidebar-palette-content">
-      <div class="coler-list"></div>
+    <div class="coler-list"></div>
+    <div class="favourite-list">
+      <div class="favourite-header">
+        Избранное
+      </div>
+      <div class="favourite-elements"></div>
+      <div class="color-selected">Цвет выбран</div>
+
     </div>
   </div>
 
@@ -35,8 +41,16 @@
     <div class="content-layer">
       <!-- background color -->
       <div class="background-colors">
-        <div id="background-first" class="background-color"></div>
-        <div id="background-second" class="background-color"></div>
+        <div id="background-first" class="background-color">
+          <div class="coler-first-container">
+            <div id="coler-first-id" class="coler-id"></div>
+          </div>
+        </div>
+        <div id="background-second" class="background-color">
+          <div class="coler-second-container">
+            <div id="coler-second-id" class="coler-id"></div>
+          </div>
+        </div>
       </div>
 
       <!-- image template -->

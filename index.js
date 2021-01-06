@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let sidebarToggle = document.querySelector('.sidebar-header-toggle')
   let toggleIcon = document.querySelector('.sidebar-header-toggle-icon')
   let colerList = document.querySelector(".coler-list")
+  let favouriteElements = document.querySelector(".favourite-elements")
 
   console.log(content)
   generateColers()
@@ -33,10 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
       colerElement.addEventListener('click', function () {
         let colorFirst = document.querySelector('#background-first')
         let colorSecond = document.querySelector('#background-second')
+        let colorFirstIdElement = document.querySelector('#coler-first-id')
+        let colorSecondIdElement = document.querySelector('#coler-second-id')
 
         // change color
         colorSecond.style.backgroundColor = colorFirst.style.backgroundColor
+        colorSecondIdElement.textContent = colorFirstIdElement.textContent
         colorFirst.style.backgroundColor = this.style.backgroundColor
+        colorFirstIdElement.textContent = coler.id
         // colorFirst.classList.add('color-change')
       })
       colergroup.appendChild(colerElement)
