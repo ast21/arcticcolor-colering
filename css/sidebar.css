@@ -1,0 +1,172 @@
+@import "favourite.css";
+
+#sidebar {
+  background-color: #3F4553;
+  position: absolute;
+  width: 527px;
+  height: 100vh;
+  z-index: 1;
+}
+
+.sidebar-header {
+  background-color: #272C32;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.sidebar-header-palette {
+  width: 88px;
+  height: 72px;
+  text-align: center;
+  background-color: #3f4553;
+  color: #fff;
+  cursor: default;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.sidebar-header-palette-icon {
+  width: 27px;
+  height: 27px;
+}
+
+.sidebar-header-palette-name {
+  margin-top: 5px;
+}
+
+.sidebar-header-search {
+  margin-left: 20px;
+  width: 300px;
+  height: min-content;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #525B6F;
+  padding-bottom: 2px;
+}
+
+.sidebar-header-search-icon {
+  width: 20px;
+  height: 20px;
+  /*filter: brightness(0.55);*/
+  margin-right: 10px;
+}
+
+.sidebar-header-search-input {
+  width: 100%;
+  font-size: 12px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  caret-color: white;
+  color: white;
+}
+
+.sidebar-header-search-input::-webkit-input-placeholder {
+  color: #525B6F;
+}
+
+.sidebar-header-toggle {
+  width: 119px;
+  height: 72px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.sidebar-header-toggle:hover {
+  background: linear-gradient(to right, #272C32 50%, #39424a);
+  transition: 0.5s;
+}
+
+.sidebar-header-toggle-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.coler-list {
+  height: calc(100vh - 72px - 10px);
+  overflow: auto;
+  color: #3F4553;
+  margin-top: 10px;
+}
+
+.coler-group {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.coler-element {
+  width: 77px;
+  height: 74px;
+  margin-left: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.1s linear;
+}
+
+.coler-element.selected {
+  transform: scale(0.93);
+}
+
+.coler-element.selected > .coler-tick {
+  display: block;
+}
+
+.coler-element.selected:hover > .coler-tick {
+  opacity: unset;
+}
+
+.coler-element:first-child {
+  margin-left: 0;
+}
+
+.coler-element:hover {
+  transform: scale(0.93);
+}
+
+.coler-element:hover > .coler-tick {
+  display: block;
+  opacity: 0.4;
+}
+
+.group-ident {
+  position: absolute;
+  right: 0;
+  margin-top: 5px;
+  margin-right: 7px;
+}
+
+.coler-ident {
+  position: absolute;
+  font-size: 10px;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 5px;
+  margin-right: 7px;
+}
+
+.coler-tick {
+  display: none;
+  margin-top: calc(50% - 11px);
+  margin-left: calc(50% - 11px);
+}
+
+.mirror-x {
+  transform: scale(-1, 1);
+}
+
+.mirror-y {
+  transform: scale(1, -1);
+}
+

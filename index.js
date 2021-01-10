@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let colerList = document.querySelector(".coler-list")
   let favouriteElements = document.querySelector(".favourite-elements")
   let favouriteContent = document.querySelector(".favourite-content")
-  let favouriteToggle = document.querySelector(".favourite-header")
+  let favouriteHeader = document.querySelector(".favourite-header")
+  let favouriteHeaderIcon = document.querySelector(".favourite-header-icon")
 
   generateColers()
 
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       colerElement.addEventListener('click', function () {
         changeColor(coler.id, coler.color)
         selectColer(this, coler)
+        favouriteOpen()
       })
       colergroup.appendChild(colerElement)
 
@@ -67,13 +69,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  favouriteToggle.addEventListener('click', function () {
+  favouriteHeader.addEventListener('click', function () {
+    favouriteToggle()
+  })
+
+  function favouriteOpen() {
+    favouriteContent.classList.add('show', 'transition')
+    favouriteHeaderIcon.classList.add('mirror-y', 'transition')
+  }
+
+  function favouriteToggle() {
     if (favouriteContent.classList.contains('show')) {
       favouriteContent.classList.remove('show')
+      favouriteHeaderIcon.classList.remove('mirror-y')
     } else {
-      favouriteContent.classList.add('show', 'transition')
+      favouriteOpen()
     }
-  })
+  }
 
   function selectColer(element, coler) {
     if (element.classList.contains('selected')) {
@@ -97,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // favouriteElement
     let favouriteElement = document.createElement('div')
     favouriteElement.dataset.id = coler.id
-    favouriteElement.classList.add('coler-element')
+    favouriteElement.classList.add('favourite-element')
     favouriteElement.style.background = coler.color
     favouriteElement.setAttribute('title', coler.id)
     favouriteElement.addEventListener('click', function () {
