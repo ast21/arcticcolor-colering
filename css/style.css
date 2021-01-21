@@ -34,13 +34,13 @@
   background-color: bisque;
 }
 
-#background-first {
+#background-based {
   display: flex;
   justify-content: flex-end;
   align-items: start;
 }
 
-.coler-first-container {
+.coler-based-container {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -48,12 +48,12 @@
   height: 50%;
 }
 
-#background-second {
+#background-compared {
   display: flex;
   justify-content: start;
 }
 
-.coler-second-container {
+.coler-compared-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -117,27 +117,4 @@
 
 .transition {
   transition-duration: 0.5s;
-}
-
-/* scrollbar */
-.coler-list {
-  scrollbar-width: thin;
-  scrollbar-color: #A8B2CC #3F4553;
-}
-
-.coler-list::-webkit-scrollbar {
-  height: 120px;
-  width: 8px;
-}
-
-.coler-list::-webkit-scrollbar-track {
-  background: #3F4553;
-}
-
-.coler-list::-webkit-scrollbar-thumb {
-  border-left: 3px solid #A8B2CC;
-}
-
-.coler-list::-webkit-scrollbar-thumb:hover {
-  border-left: 3px solid #8991a5;
 }

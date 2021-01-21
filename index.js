@@ -4,10 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
   let sidebarToggle = document.querySelector('.sidebar-header-toggle')
   let toggleIcon = document.querySelector('.sidebar-header-toggle-icon')
   let colerList = document.querySelector(".coler-list")
+  let based = document.querySelector('#based')
+  let compared = document.querySelector('#compared')
   // let favouriteElements = document.querySelector(".favourite-elements")
   // let favouriteContent = document.querySelector(".favourite-content")
   // let favouriteHeader = document.querySelector(".favourite-header")
   // let favouriteHeaderIcon = document.querySelector(".favourite-header-icon")
+
+  based.addEventListener('click', () => {
+    based.classList.add('changed')
+    compared.classList.remove('changed')
+  })
+
+  compared.addEventListener('click', () => {
+    compared.classList.add('changed')
+    based.classList.remove('changed')
+  })
 
   generateColers()
 
@@ -34,9 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       colerElement.style.background = coler.color
       colerElement.setAttribute('title', coler.id)
       colerElement.addEventListener('click', function () {
-        changeColor(coler.id, coler.color)
         selectColer(this, coler)
-        // favouriteOpen()
       })
       colergroup.appendChild(colerElement)
 
@@ -50,10 +60,22 @@ document.addEventListener('DOMContentLoaded', () => {
       colerElement.appendChild(colerIdent)
 
       // colerTick
-      let colerTick = document.createElement('img')
-      colerTick.classList.add('coler-tick')
-      colerTick.src = './img/tick.svg'
-      colerElement.appendChild(colerTick)
+      // let colerTick = document.createElement('img')
+      // colerTick.classList.add('coler-tick')
+      // colerTick.src = './img/tick.svg'
+      // colerElement.appendChild(colerTick)
+
+      // based
+      let based = document.createElement('img')
+      based.classList.add('based-img')
+      based.src = './img/based.svg'
+      colerElement.appendChild(based)
+
+      // compared
+      let compared = document.createElement('img')
+      compared.classList.add('compared-img')
+      compared.src = './img/compared.svg'
+      colerElement.appendChild(compared)
     })
   }
 
@@ -69,65 +91,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  // favouriteHeader.addEventListener('click', function () {
-  //   favouriteToggle()
-  // })
-
-  // function favouriteOpen() {
-  //   favouriteContent.classList.add('show', 'transition')
-  //   favouriteHeaderIcon.classList.add('mirror-y', 'transition')
-  // }
-
-  // function favouriteToggle() {
-  //   if (favouriteContent.classList.contains('show')) {
-  //     favouriteContent.classList.remove('show')
-  //     favouriteHeaderIcon.classList.remove('mirror-y')
-  //   } else {
-  //     favouriteOpen()
-  //   }
-  // }
-
   function selectColer(element, coler) {
-    if (element.classList.contains('selected')) {
-      element.classList.remove('selected')
-      // let colers = removeElementFromLocalStorage(coler)
-      // removeFavourites(coler)
+    let changedId = document.querySelector('.color-side.changed').id
+    let selected = document.querySelector(`.coler-element.${changedId}`)
+    changeColor(coler.id, coler.color, changedId)
+
+    if (element.classList.contains(changedId)) {
+      element.classList.remove(changedId)
     } else {
-      element.classList.add('selected')
-      // let colers = addElementToLocalStorage(coler)
-      // addFavourites(coler)
+      element.classList.add(changedId)
+      selected && selected.classList.remove(changedId)
     }
   }
-
-  // function updateFavourites(colers) {
-  //   colers.forEach(coler => {
-  //     addFavourites(coler)
-  //   })
-  // }
-
-  // function addFavourites(coler) {
-  //   // favouriteElement
-  //   let favouriteElement = document.createElement('div')
-  //   favouriteElement.dataset.id = coler.id
-  //   favouriteElement.classList.add('favourite-element')
-  //   favouriteElement.style.background = coler.color
-  //   favouriteElement.setAttribute('title', coler.id)
-  //   favouriteElement.addEventListener('click', function () {
-  //     changeColor(coler.id, coler.color)
-  //     selectColer(this, coler)
-  //   })
-  //   // favouriteIdent
-  //   let favouriteIdent = document.createElement('div')
-  //   favouriteIdent.classList.add('coler-ident')
-  //   favouriteIdent.innerText = coler.id
-  //   favouriteElement.appendChild(favouriteIdent)
-  //
-  //   favouriteElements.appendChild(favouriteElement)
-  // }
-
-  // function removeFavourites(element, coler) {
-  //   console.log(colers)
-  // }
 
   // function addElementToLocalStorage(coler) {
   //   let colers = JSON.parse(localStorage.getItem('colers'))
@@ -150,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //   return []
   // }
 
-  function changeColor(colerId, color, element = 'first') {
+  function changeColor(colerId, color, element) {
     let backgroundElement = document.querySelector(`#background-${element}`)
     let colerIdElement = document.querySelector(`#coler-${element}-id`)
     backgroundElement.style.backgroundColor = color
