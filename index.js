@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let colerList = document.querySelector(".coler-list")
   let based = document.querySelector('#based')
   let compared = document.querySelector('#compared')
+  let colerSearch = document.querySelector('#coler-search')
   // let favouriteElements = document.querySelector(".favourite-elements")
   // let favouriteContent = document.querySelector(".favourite-content")
   // let favouriteHeader = document.querySelector(".favourite-header")
@@ -21,10 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
     based.classList.remove('changed')
   })
 
-  generateColers()
+  colerSearch.addEventListener('input', function() {
+    let filteredColers = window.colers.filter(coler => {
+      return coler.id.includes(this.value) || coler.tone.includes(this.value)
+    })
+    generateColers(filteredColers)
+  });
 
-  function generateColers() {
-    window.colers.forEach(coler => {
+  generateColers(window.colers)
+
+  function generateColers(colers) {
+    while (colerList.firstChild) {
+      colerList.removeChild(colerList.firstChild);
+    }
+
+    colers.forEach(coler => {
       // colergroup
       let groupIdent = null
       let colergroup = document.querySelector(`#coler-group-${coler.group}`)
