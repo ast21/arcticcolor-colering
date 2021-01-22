@@ -102,15 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   sidebarToggle.addEventListener('click', function () {
-    if (sidebar.classList.contains('sidebar-hide')) {
-      sidebar.classList.remove('sidebar-hide')
-      content.classList.remove('content-full')
-      toggleIcon.classList.remove('mirror-x')
-    } else {
-      sidebar.classList.add('sidebar-hide', 'transition')
-      content.classList.add('content-full', 'transition')
-      toggleIcon.classList.add('mirror-x')
-    }
+    sidebar.classList.toggle('sidebar-hide')
+    content.classList.toggle('content-full')
+    toggleIcon.classList.toggle('mirror-x')
   })
 
   function selectColer(element, coler) {
