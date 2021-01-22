@@ -7,10 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let based = document.querySelector('#based')
   let compared = document.querySelector('#compared')
   let colerSearch = document.querySelector('#coler-search')
-  // let favouriteElements = document.querySelector(".favourite-elements")
-  // let favouriteContent = document.querySelector(".favourite-content")
-  // let favouriteHeader = document.querySelector(".favourite-header")
-  // let favouriteHeaderIcon = document.querySelector(".favourite-header-icon")
 
   based.addEventListener('click', () => {
     based.classList.add('changed')
