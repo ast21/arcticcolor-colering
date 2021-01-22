@@ -7,6 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let based = document.querySelector('#based')
   let compared = document.querySelector('#compared')
   let colerSearch = document.querySelector('#coler-search')
+  let toggleImage = document.querySelector('.toggle-image')
+  let facade = document.querySelector('#facade')
+  let interior = document.querySelector('#interior')
+  let imageTemplate = document.querySelector('.image-template')
+
+  toggleImage.addEventListener('click', () => {
+    facade.classList.toggle('d-none')
+    interior.classList.toggle('d-none')
+    imageTemplate.classList.toggle('image-template-url')
+  })
 
   based.addEventListener('click', () => {
     based.classList.add('changed')

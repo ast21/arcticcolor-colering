@@ -85,6 +85,10 @@
   /*z-index: 1;*/
 }
 
+.image-template-url {
+  background-image: url(../img/facade-template.png);
+}
+
 .header {
   position: absolute;
   min-height: 72px;
@@ -93,6 +97,39 @@
   display: flex;
   justify-content: start;
   align-items: center;
+}
+
+.toggle-image {
+  position: absolute;
+  background-color: #3F4553;
+  color: #ffffff;
+  padding: 6px;
+  cursor: pointer;
+  right: 0;
+  bottom: 50px;
+  border-radius: 5px 0 0 5px;
+  transition: all 1s .1s ease;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.toggle-image-icon {
+  margin: 0 3px;
+}
+
+.toggle-image-name {
+  margin: 0 12px;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.d-none {
+  display: none;
 }
 
 .header-icon {
