@@ -90,8 +90,14 @@
   margin-right: 5px;
 }
 
+.sidebar-content {
+  height: calc(100vh - 72px);
+  width: 100%;
+  transition-duration: 0.5s;
+}
+
 .coler-list {
-  height: calc(100vh - 72px - 40px - 10px);
+  height: calc(100% - 40px - 10px);
   overflow: auto;
   color: #3F4553;
   margin-top: 10px;
@@ -232,10 +238,17 @@
   margin-left: 10px;
 }
 
-.based-color {
+.color-selected {
+  background-color: #3B73F6;
+  border-radius: 5px;
+  text-align: center;
+  align-items: center;
+  padding: 9px 112px;
+  width: fit-content;
+  margin: 10px auto;
 
 }
-
-.compared-color {
-
+.color-selected:hover {
+  background-color: #1055F6;
+  cursor: pointer;
 }
