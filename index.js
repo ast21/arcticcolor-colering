@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let facade = document.querySelector('#facade')
   let interior = document.querySelector('#interior')
   let imageTemplate = document.querySelector('.image-template')
+  let colerSelected = document.querySelector('.coler-selected')
+  let colerSelectButton = document.querySelector('.coler-select-button')
 
   toggleImage.addEventListener('click', () => {
     facade.classList.toggle('d-none')
@@ -19,11 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   based.addEventListener('click', () => {
+    let selected = document.querySelector(`.coler-element.based`)
+    if (selected) {
+      colerSelected.style.backgroundColor = selected.style.backgroundColor;
+      colerSelected.textContent = selected.title;
+    }
     based.classList.add('changed')
     compared.classList.remove('changed')
   })
 
   compared.addEventListener('click', () => {
+    let selected = document.querySelector(`.coler-element.compared`)
+    if (selected) {
+      colerSelected.style.backgroundColor = selected.style.backgroundColor;
+      colerSelected.textContent = selected.title;
+    }
     compared.classList.add('changed')
     based.classList.remove('changed')
   })
@@ -111,6 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let changedId = document.querySelector('.color-side.changed').id
     let selected = document.querySelector(`.coler-element.${changedId}`)
     changeColor(coler.id, coler.color, changedId)
+    console.log(coler.color)
+    colerSelected.style.backgroundColor = coler.color;
+    colerSelected.textContent = coler.id;
+    colerSelectButton.textContent = 'Цвет выбран'
+    colerSelectButton.classList.remove('disabled')
 
     if (element.classList.contains(changedId)) {
       element.classList.remove(changedId)
