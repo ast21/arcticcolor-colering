@@ -23,10 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   colerSearch.addEventListener('input', function() {
-    let filteredColers = window.colers.filter(coler => {
-      return coler.id.includes(this.value) || coler.tone.includes(this.value)
+    window.colers.forEach(coler => {
+      let colerElement = document.getElementById(`coler-element-${coler.id}`)
+      if (coler.id.includes(this.value) || coler.tone.includes(this.value)) {
+        colerElement.style.display = 'block'
+      } else {
+        colerElement.style.display = 'none'
+      }
     })
-    generateColers(filteredColers)
   });
 
   generateColers(window.colers)
