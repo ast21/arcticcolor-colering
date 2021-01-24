@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   colerSearch.addEventListener('input', function() {
     window.colers.forEach(coler => {
       let colerElement = document.getElementById(`coler-element-${coler.id}`)
-      if (coler.id.includes(this.value) || coler.tone.includes(this.value)) {
+      if (coler.id.includes(this.value.toLowerCase()) || coler.tone.includes(this.value.toLowerCase())) {
         colerElement.style.display = 'block'
       } else {
         colerElement.style.display = 'none'
