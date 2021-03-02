@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let imageTemplate = document.querySelector('.image-template')
   let colerSelected = document.querySelector('.coler-selected')
   let colerSelectButton = document.querySelector('.coler-select-button')
-  let coleringOption = document.querySelector('#colerPick').dataset.colering_type ?? 'interior'
+  let coleringOption = document.querySelector('#colerPick')?.dataset.colering_type ?? 'interior'
 
   if (coleringOption === 'facade') {
     facade.classList.remove('d-none')
@@ -170,6 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
           sum.textContent = valueSum;
           total.textContent = valueSum * count;
         }
+      } else {
+        window.location.href = `/shop/?filter_colering=${coleringOption}`
       }
     })
 
