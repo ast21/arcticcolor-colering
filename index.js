@@ -13,11 +13,28 @@ document.addEventListener('DOMContentLoaded', () => {
   let imageTemplate = document.querySelector('.image-template')
   let colerSelected = document.querySelector('.coler-selected')
   let colerSelectButton = document.querySelector('.coler-select-button')
+  let coleringOption = 'interior'
+
+  colerSelectButton.addEventListener('click', () => {
+    console.log(window.location)
+    if (window.location.href.includes('product')) {
+		  document.querySelector('#colerProductId').value = colerSelected.dataset[`${coleringOption}_id`]
+		  document.querySelector('#colerPick').style.backgroundColor = colerSelected.style.backgroundColor
+      jQuery.magnificPopup.close()
+    }
+  })
 
   toggleImage.addEventListener('click', () => {
-    facade.classList.toggle('d-none')
-    interior.classList.toggle('d-none')
-    imageTemplate.classList.toggle('image-template-url')
+    coleringOption = coleringOption === 'interior' ? 'facade' : 'interior'
+    if (coleringOption === 'interior') {
+      facade.classList.add('d-none')
+      interior.classList.remove('d-none')
+      imageTemplate.classList.remove('image-template-url')
+    } else {
+      facade.classList.remove('d-none')
+      interior.classList.add('d-none')
+      imageTemplate.classList.add('image-template-url')
+    }
   })
 
   based.addEventListener('click', () => {
@@ -102,13 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // based
       let based = document.createElement('img')
       based.classList.add('based-img')
-      based.src = './img/based.svg'
+      based.src = '/wp-content/uploads/2021/01/based.svg'
       colerElement.appendChild(based)
 
       // compared
       let compared = document.createElement('img')
       compared.classList.add('compared-img')
-      compared.src = './img/compared.svg'
+      compared.src = '/wp-content/uploads/2021/01/compared.svg'
       colerElement.appendChild(compared)
     })
   }
@@ -126,6 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(coler.color)
     colerSelected.style.backgroundColor = coler.color;
     colerSelected.textContent = coler.id;
+    colerSelected.dataset.interior_id = coler.interior_id;
+    colerSelected.dataset.facade_id = coler.facade_id;
     colerSelectButton.textContent = 'Цвет выбран'
     colerSelectButton.classList.remove('disabled')
 
