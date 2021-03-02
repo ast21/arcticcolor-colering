@@ -15,60 +15,31 @@ document.addEventListener('DOMContentLoaded', () => {
   let colerSelectButton = document.querySelector('.coler-select-button')
   let coleringOption = 'interior'
 
-  colerSelectButton.addEventListener('click', () => {
-    console.log(window.location)
-    if (window.location.href.includes('product')) {
-		  document.querySelector('#colerProductId').value = colerSelected.dataset[`${coleringOption}_id`]
-		  document.querySelector('#colerPick').style.backgroundColor = colerSelected.style.backgroundColor
-      jQuery.magnificPopup.close()
-    }
-  })
-
-  toggleImage.addEventListener('click', () => {
-    coleringOption = coleringOption === 'interior' ? 'facade' : 'interior'
-    if (coleringOption === 'interior') {
-      facade.classList.add('d-none')
-      interior.classList.remove('d-none')
-      imageTemplate.classList.remove('image-template-url')
-    } else {
-      facade.classList.remove('d-none')
-      interior.classList.add('d-none')
-      imageTemplate.classList.add('image-template-url')
-    }
-  })
-
-  based.addEventListener('click', () => {
-    let selected = document.querySelector(`.coler-element.based`)
-    if (selected) {
-      colerSelected.style.backgroundColor = selected.style.backgroundColor;
-      colerSelected.textContent = selected.title;
-    }
-    based.classList.add('changed')
-    compared.classList.remove('changed')
-  })
-
-  compared.addEventListener('click', () => {
-    let selected = document.querySelector(`.coler-element.compared`)
-    if (selected) {
-      colerSelected.style.backgroundColor = selected.style.backgroundColor;
-      colerSelected.textContent = selected.title;
-    }
-    compared.classList.add('changed')
-    based.classList.remove('changed')
-  })
-
-  colerSearch.addEventListener('input', function() {
-    window.colers.forEach(coler => {
-      let colerElement = document.getElementById(`coler-element-${coler.id}`)
-      if (coler.id.includes(this.value.toLowerCase()) || coler.tone.includes(this.value.toLowerCase())) {
-        colerElement.style.display = 'block'
-      } else {
-        colerElement.style.display = 'none'
-      }
-    })
-  });
-
+  addEvents()
   generateColers(window.colers)
+  loadChanges()
+
+  function getColerById(id) {
+    return window.colers.find(coler => coler.id === id)
+  }
+
+  function loadChanges() {
+    let basedColerId = localStorage.getItem('basedColerId')
+    let comparedColerId = localStorage.getItem('comparedColerId')
+    let activeTab = localStorage.getItem('activeTab') ?? 'based'
+    let element
+
+    if (basedColerId) {
+      element = document.querySelector(`#coler-element-${basedColerId}`)
+      selectColer(element, getColerById(basedColerId), 'based')
+    }
+    if (comparedColerId) {
+      element = document.querySelector(`#coler-element-${comparedColerId}`)
+      selectColer(element, getColerById(comparedColerId), 'compared')
+    }
+
+    document.querySelector(`#${activeTab}`).click()
+  }
 
   function generateColers(colers) {
     while (colerList.firstChild) {
@@ -97,7 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
       colerElement.style.background = coler.color
       colerElement.setAttribute('title', coler.id)
       colerElement.addEventListener('click', function () {
-        selectColer(this, coler)
+        let activeTab = document.querySelector('.color-side.changed').id
+        selectColer(this, coler, activeTab)
       })
       colergroup.appendChild(colerElement)
 
@@ -136,52 +108,104 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleIcon.classList.toggle('mirror-x')
   })
 
-  function selectColer(element, coler) {
-    let changedId = document.querySelector('.color-side.changed').id
-    let selected = document.querySelector(`.coler-element.${changedId}`)
-    changeColor(coler.id, coler.color, changedId)
+  function selectColer(element, coler, activeTab) {
+    let selected = document.querySelector(`.coler-element.${activeTab}`)
+    changeColor(coler.id, coler.color, activeTab)
     console.log(coler.color)
-    colerSelected.style.backgroundColor = coler.color;
-    colerSelected.textContent = coler.id;
-    colerSelected.dataset.interior_id = coler.interior_id;
-    colerSelected.dataset.facade_id = coler.facade_id;
+    updateColerSelected(coler)
     colerSelectButton.textContent = 'Цвет выбран'
     colerSelectButton.classList.remove('disabled')
 
-    if (element.classList.contains(changedId)) {
-      element.classList.remove(changedId)
+    if (element.classList.contains(activeTab)) {
+      element.classList.remove(activeTab)
     } else {
-      element.classList.add(changedId)
-      selected && selected.classList.remove(changedId)
+      element.classList.add(activeTab)
+      selected && selected.classList.remove(activeTab)
     }
+
+    localStorage.setItem(`${activeTab}ColerId`, coler.id)
   }
 
-  // function addElementToLocalStorage(coler) {
-  //   let colers = JSON.parse(localStorage.getItem('colers'))
-  //   if (colers) {
-  //     colers.push(coler)
-  //     localStorage.setItem('colers', JSON.stringify(colers))
-  //     return colers
-  //   }
-  //   localStorage.setItem('colers', JSON.stringify([coler]))
-  //   return [coler]
-  // }
-
-  // function removeElementFromLocalStorage(coler) {
-  //   let colers = JSON.parse(localStorage.getItem('colers'))
-  //   if (colers) {
-  //     colers.shift(coler)
-  //     localStorage.setItem('colers', JSON.stringify(colers))
-  //     return colers
-  //   }
-  //   return []
-  // }
+  function updateColerSelected(coler) {
+    colerSelected.style.background = coler.color;
+    colerSelected.textContent = coler.id;
+    colerSelected.dataset.coler_id = coler.id;
+    colerSelected.dataset.interior_id = coler.interior_id;
+    colerSelected.dataset.facade_id = coler.facade_id;
+    colerSelected.dataset.interior_price = coler.interior_price;
+    colerSelected.dataset.facade_price = coler.facade_price;
+  }
 
   function changeColor(colerId, color, element) {
     let backgroundElement = document.querySelector(`#background-${element}`)
     let colerIdElement = document.querySelector(`#coler-${element}-id`)
     backgroundElement.style.backgroundColor = color
     colerIdElement.textContent = colerId
+  }
+
+  function addEvents() {
+    colerSelectButton.addEventListener('click', () => {
+      if (window.location.href.includes('product')) {
+        document.querySelector('#colerProductId').value = colerSelected.dataset[`${coleringOption}_id`]
+        document.querySelector('#coler-id').textContent = colerSelected.dataset.coler_id
+        document.querySelector('#coler-price').textContent = colerSelected.dataset[`${coleringOption}_price`]
+        document.querySelector('#coler-color').style.backgroundColor = colerSelected.style.background
+
+        calculate()
+        jQuery.magnificPopup.close()
+
+        function calculate() {
+          let price = +document.querySelector('#itemPrice').value;
+          let count = +document.querySelector('input.qty').value;
+          let colerPrice = +document.querySelector('#coler-price').textContent;
+          let sum = document.querySelector('#cart-size-count');
+          let total = document.querySelector('#cart-sum-count');
+          let valueSum = price + colerPrice;
+          sum.textContent = valueSum;
+          total.textContent = valueSum * count;
+        }
+      }
+    })
+
+    toggleImage.addEventListener('click', () => {
+      coleringOption = coleringOption === 'interior' ? 'facade' : 'interior'
+      if (coleringOption === 'interior') {
+        facade.classList.add('d-none')
+        interior.classList.remove('d-none')
+        imageTemplate.classList.remove('image-template-url')
+      } else {
+        facade.classList.remove('d-none')
+        interior.classList.add('d-none')
+        imageTemplate.classList.add('image-template-url')
+      }
+    })
+
+    based.addEventListener('click', () => {
+      let selected = document.querySelector(`.coler-element.based`)
+      if (selected) updateColerSelected(getColerById(selected.title))
+      based.classList.add('changed')
+      compared.classList.remove('changed')
+      localStorage.setItem('activeTab', 'based')
+    })
+
+    compared.addEventListener('click', () => {
+      let selected = document.querySelector(`.coler-element.compared`)
+      if (selected) updateColerSelected(getColerById(selected.title))
+      compared.classList.add('changed')
+      based.classList.remove('changed')
+      localStorage.setItem('activeTab', 'compared')
+    })
+
+    colerSearch.addEventListener('input', function () {
+      window.colers.forEach(coler => {
+        let colerElement = document.getElementById(`coler-element-${coler.id}`)
+        if (coler.id.includes(this.value.toLowerCase()) || coler.tone.includes(this.value.toLowerCase())) {
+          colerElement.style.display = 'block'
+        } else {
+          colerElement.style.display = 'none'
+        }
+      })
+    });
   }
 })
 

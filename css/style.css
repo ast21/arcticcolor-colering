@@ -116,7 +116,8 @@
 
 .toggle-image {
   position: absolute;
-  background-color: #3F4553;
+  /*background-color: #3F4553;*/
+  background-color: #1055F6;
   color: #ffffff;
   padding: 6px;
   cursor: pointer;
