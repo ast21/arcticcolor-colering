@@ -13,7 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let imageTemplate = document.querySelector('.image-template')
   let colerSelected = document.querySelector('.coler-selected')
   let colerSelectButton = document.querySelector('.coler-select-button')
-  let coleringOption = 'interior'
+  let coleringOption = document.querySelector('#colerPick').dataset.colering_type ?? 'interior'
+
+  if (coleringOption === 'facade') {
+    facade.classList.remove('d-none')
+    interior.classList.add('d-none')
+    imageTemplate.classList.add('image-template-url')
+  }
 
   addEvents()
   generateColers(window.colers)
