@@ -1,5 +1,5 @@
 window.onload = function () {
-  document.querySelector('.coler-select-button').click()
+  if (window.location.href.includes('product')) calculate()
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -153,22 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
     colerIdElement.textContent = colerId
   }
 
-  function calculate() {
-    document.querySelector('#colerProductId').value = colerSelected.dataset[`${coleringOption}_id`]
-    document.querySelector('#coler-id').textContent = colerSelected.dataset.coler_id
-    document.querySelector('#coler-price').textContent = colerSelected.dataset[`${coleringOption}_price`]
-    document.querySelector('#coler-color').style.backgroundColor = colerSelected.style.background
-
-    let price = +document.querySelector('#itemPrice').value;
-    let count = +document.querySelector('input.qty').value;
-    let colerPrice = +document.querySelector('#coler-price').textContent;
-    let sum = document.querySelector('#cart-size-count');
-    let total = document.querySelector('#cart-sum-count');
-    let valueSum = price + colerPrice;
-    sum.textContent = valueSum;
-    total.textContent = valueSum * count;
-  }
-
   function addEvents() {
     colerSelectButton.addEventListener('click', () => {
       if (window.location.href.includes('product')) {
@@ -221,3 +205,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
+function calculate() {
+  let colerSelected = document.querySelector('.coler-selected')
+  let coleringOption = document.querySelector('#colerPick')?.dataset.colering_type ?? 'interior'
+
+  document.querySelector('#colerProductId').value = colerSelected.dataset[`${coleringOption}_id`]
+  document.querySelector('#coler-id').textContent = colerSelected.dataset.coler_id
+  document.querySelector('#coler-price').textContent = colerSelected.dataset[`${coleringOption}_price`]
+  document.querySelector('#coler-color').style.backgroundColor = colerSelected.style.background
+
+  let price = +document.querySelector('#itemPrice').value;
+  let count = +document.querySelector('input.qty').value;
+  let colerPrice = +document.querySelector('#coler-price').textContent;
+  let sum = document.querySelector('#cart-size-count');
+  let total = document.querySelector('#cart-sum-count');
+  let valueSum = price + colerPrice;
+  sum.textContent = valueSum;
+  total.textContent = valueSum * count;
+}
