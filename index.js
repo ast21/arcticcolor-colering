@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function loadChanges() {
     let basedColerId = localStorage.getItem('basedColerId')
     let comparedColerId = localStorage.getItem('comparedColerId')
-    let activeTab = localStorage.getItem('activeTab') ?? 'based'
     let element
 
     if (basedColerId) {
@@ -47,8 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
       element = document.querySelector(`#coler-element-${comparedColerId}`)
       selectColer(element, getColerById(comparedColerId), 'compared')
     }
-
-    document.querySelector(`#${activeTab}`).click()
   }
 
   function generateColers(colers) {
@@ -122,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selected = document.querySelector(`.coler-element.${activeTab}`)
     changeColor(coler.id, coler.color, activeTab)
     console.log(coler.color)
-    updateColerSelected(coler)
+    if (activeTab === 'based') updateColerSelected(coler)
     colerSelectButton.textContent = 'Цвет выбран'
     colerSelectButton.classList.remove('disabled')
 
@@ -181,15 +178,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (selected) updateColerSelected(getColerById(selected.title))
       based.classList.add('changed')
       compared.classList.remove('changed')
-      localStorage.setItem('activeTab', 'based')
     })
 
     compared.addEventListener('click', () => {
-      let selected = document.querySelector(`.coler-element.compared`)
-      if (selected) updateColerSelected(getColerById(selected.title))
       compared.classList.add('changed')
       based.classList.remove('changed')
-      localStorage.setItem('activeTab', 'compared')
     })
 
     colerSearch.addEventListener('input', function () {
