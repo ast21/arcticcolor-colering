@@ -98,13 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // based
       let based = document.createElement('img')
       based.classList.add('based-img')
-      based.src = '/wp-content/uploads/2021/01/based.svg'
+      based.src = './img/based.svg'
       colerElement.appendChild(based)
 
       // compared
       let compared = document.createElement('img')
       compared.classList.add('compared-img')
-      compared.src = '/wp-content/uploads/2021/01/compared.svg'
+      compared.src = './img/compared.svg'
       colerElement.appendChild(compared)
     })
   }
